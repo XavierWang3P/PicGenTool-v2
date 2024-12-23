@@ -1,0 +1,38 @@
+{
+  "name": "picgentool_docxtemplater",
+  "version": "2.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:pkg": "pkg . --out-path=dist/ --debug",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Xavier Wang",
+  "license": "GPL-3.0-only",
+  "description": "",
+  "dependencies": {
+    "docxtemplater": "^3.55.8",
+    "docxtemplater-image-module-free": "^1.1.1",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "multer": "1.4.5-lts.1",
+    "pizzip": "^3.1.7",
+    "sharp": "^0.33.5"
+  },
+  "bin": "app.js",
+  "pkg": {
+    "targets": [
+      "node18-macos-x64",
+      "node18-win-x64"
+    ],
+    "assets": [
+      "public/*",
+      "templates/*",
+      "views/*"
+    ],
+    "scripts": [
+      "app.js"
+    ]
+  }
+}
