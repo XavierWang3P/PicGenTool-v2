@@ -1,11 +1,11 @@
 <div align="center">
-  <img src="README_FILES/Icon.jpg" style="width: 72px; height: auto; border-radius: 25%;" alt="App Logo">
+  <img src="README_Files/Icon.jpg" style="width: 72px; height: auto; border-radius: 25%;" alt="App Logo">
   <h1>活动照片文档生成工具</h1>
   <p>10 秒钟快速生成一份活动文档！</p>
 </div>
 <br />
 
-<img src="README_Files/Homepage.jpg" style="width: 50%; height: auto; border-radius: 5%;" alt="App Homepage">
+<img src="README_Files/Homepage.jpg" style="align: center; border-radius: 5%;" alt="App Homepage">
 
 ## :star2: 项目介绍
 
