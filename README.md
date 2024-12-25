@@ -1,6 +1,10 @@
 <div align="center">
   <img src="README_Files/Icon.jpg" style="width: 72px; height: auto; border-radius: 25%;" alt="App Logo">
   <h1>活动照片文档生成工具</h1>
+   <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/XavierWang3P/PicGenTool-v2">
+   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/XavierWang3P/PicGenTool-v2">
+   <img alt="Docker Stars" src="https://img.shields.io/docker/stars/xavierwang3p/picgentool2">
+   <img alt="GitHub License" src="https://img.shields.io/github/license/XavierWang3P/PicGenTool-v2">
   <p>10 秒钟快速生成一份活动文档！</p>
 </div>
 <br />
@@ -15,15 +19,11 @@
 
 本项目是在 [Cursor](https://www.cursor.com/) 的亲自指挥、亲自部署下完成的，十分十分十分感谢 🙏！Word 模版运用了 [docxtemplater](https://www.npmjs.com/package/docxtemplater) 与 [docxtemplater-image-module-free](https://www.npmjs.com/package/docxtemplater-image-module-free) 库，前端界面使用 [express](https://www.npmjs.com/package/express) 与 [ejs](https://www.npmjs.com/package/ejs) 库渲染。
 
-<br />
-
 Word 模板中使用固定表格，目前未实现根据图片数量自动增减表格的功能，因此单个文档的图片数量最多为 30 张。
 
-<br />
+在未来，可能增加 API 接口以实现 Windows 右键菜单便捷上传，支持拖动图片调整展示顺序。如果你有好的功能、建议，欢迎提出 issue，或进行代码方面的支持！
 
-在未来，可能会支持 Docker 容器部署，增加 API 接口以实现 Windows 右键菜单便捷上传，支持拖动图片调整展示顺序。如果你有好的功能、建议，欢迎提出 issue，或进行代码方面的支持！
-
-## :eyes: 使用方法
+## :eyes: 命令行使用方法
 
 <img src="README_Files/Demo.gif" style="border-radius: 5%;" alt="App Demo">
 
@@ -39,6 +39,21 @@ Word 模板中使用固定表格，目前未实现根据图片数量自动增减
    ```
 3. **生成文档**
    访问 `http://localhost:3000`，拖入图片，按照指示填写相关信息，点击生成按钮即可创建文档。
+
+## :eyes: Docker 容器使用方法
+
+1. **拉取 Docker 镜像**
+
+  ```bash
+  docker pull xavierwang3p/picgentool2
+  ```
+2. **新建容器**
+
+   ```bash
+   docker run -d -it -p 3000:3000 xavierwang3p/picgentool2
+   ```
+3. **开放端口**
+   在防火墙中开放 `3000` 端口，访问 http://IP:3000/
 
 ## :information_source: 版权
 
