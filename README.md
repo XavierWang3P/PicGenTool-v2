@@ -47,7 +47,7 @@ Word 模板中使用固定表格，目前未实现根据图片数量自动增减
 2. **新建容器**
 
   ```bash
-  docker run -d -it -p 3000:3000 xavierwang3p/picgentool2
+  docker run -d -it -p 3000:3000 xavierwang3p/picgentool2:2.0
   ```
 3. **开放端口**
 
