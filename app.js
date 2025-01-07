@@ -1,4 +1,4 @@
-// 活动照片文档生成工具 v2.0
+// 活动照片文档生成工具 v2.1
 // 项目地址：https://github.com/XavierWang3P/PicGenTool-v2
 //
 // by 王虾虾
@@ -243,7 +243,7 @@ app.use((err, req, res, next) => {
 });
 
 // 启动服务器
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5965;
 app.listen(PORT, () => {
     const host = 'http://localhost'; // 或者使用您的服务器地址
     console.log(`Server is running on ${host}:${PORT}`);
