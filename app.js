@@ -22,10 +22,10 @@ const ensureDirectoryExists = (directory) => {
 };
 
 // 创建必要的目录
-ensureDirectoryExists('public/uploads');
-ensureDirectoryExists('public/uploads/compressed');
-ensureDirectoryExists('views');
-ensureDirectoryExists('templates');
+ensureDirectoryExists(path.join(__dirname, 'public', 'uploads'));
+ensureDirectoryExists(path.join(__dirname, 'public', 'uploads', 'compressed'));
+ensureDirectoryExists(path.join(__dirname, 'views'));
+ensureDirectoryExists(path.join(__dirname, 'templates'));
 
 // 配置 multer 存储
 const storage = multer.diskStorage({
@@ -35,8 +35,11 @@ const storage = multer.diskStorage({
     filename: function(req, file, cb) {
         // 使用时间戳和原始文件名，确保文件名唯一
         const timestamp = Date.now();
+        // 使用 Buffer 处理文件名编码
         const originalName = Buffer.from(file.originalname, 'latin1').toString('utf8');
-        cb(null, `${timestamp}-${originalName}`);
+        // 移除文件名中的非法字符
+        const safeName = originalName.replace(/[<>:"/\\|?*\x00-\x1F]/g, '_');
+        cb(null, `${timestamp}-${safeName}`);
     }
 });
 
@@ -100,8 +103,8 @@ app.post('/generate', (req, res) => {
             }));
 
             // 根据图片数量选择模板
-            let templateFileName = `template-${compressedImages.length}.docx`;
-            const templatePath = path.resolve(__dirname, `templates/${templateFileName}`);
+            const templateFileName = `Template-${compressedImages.length}.docx`;
+            const templatePath = path.join(__dirname, 'templates', templateFileName);
 
             if (!fs.existsSync(templatePath)) {
                 throw new Error(`模板文件不存在: ${templateFileName}`);
@@ -187,7 +190,7 @@ app.post('/generate', (req, res) => {
 
                 // 修改文件名处理逻辑
                 const cleanTitle = title.trim(); // 去除首尾空格
-                const safeFileName = `${dateForFile}-${cleanTitle}.docx`;
+                const safeFileName = `${dateForFile}-${cleanTitle}照片.docx`;
 
                 // 修改响应头设置
                 res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
@@ -200,7 +203,8 @@ app.post('/generate', (req, res) => {
                 setTimeout(() => {
                     // 清理上传的图片
                     images.forEach(image => {
-                        fs.unlink(image.path, (err) => {
+                        const imagePath = path.resolve(image.path);
+                        fs.unlink(imagePath, (err) => {
                             if (err) {
                                 console.error('删除上传文件时出错:', err);
                             } else {
@@ -211,8 +215,9 @@ app.post('/generate', (req, res) => {
 
                     // 清理压缩的图片
                     compressedImages.forEach(imagePath => {
+                        const resolvedPath = path.resolve(imagePath);
                         try {
-                            fs.unlinkSync(imagePath);
+                            fs.unlinkSync(resolvedPath);
                         } catch (error) {
                             console.error('删除压缩文件时出错:', error);
                         }
