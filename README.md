@@ -35,7 +35,7 @@ Word 模板中使用固定表格，目前未实现根据图片数量自动增减
    node app.js
    ```
 3. **生成文档**
-   访问 `http://localhost:3000`，拖入图片，按照指示填写相关信息，点击生成按钮即可创建文档。
+   访问 `http://localhost:5965`，拖入图片，按照指示填写相关信息，点击生成按钮即可创建文档。
 
 ## :eyes: Docker 容器使用方法
 
@@ -47,7 +47,7 @@ Word 模板中使用固定表格，目前未实现根据图片数量自动增减
 2. **新建容器**
 
   ```bash
-  docker run -d -it -p 3000:3000 xavierwang3p/picgentool2:2.1
+  docker run -d -it -p 5965:5965 xavierwang3p/picgentool2:2.1
   ```
 3. **开放端口**
 
