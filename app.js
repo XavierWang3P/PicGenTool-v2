@@ -9,7 +9,7 @@ const path = require('path');
 const fs = require('fs');
 const PizZip = require('pizzip');
 const Docxtemplater = require('docxtemplater');
-const ImageModule = require('docxtemplater-image-module-free');
+const ImageModule = require('docxtemplater-image-module-pwndoc');
 const sharp = require('sharp');
 
 const app = express();
@@ -113,10 +113,14 @@ app.post('/generate', (req, res) => {
             // 解析输入的日期
             const inputDate = new Date(date);
             
-            // 格式化日期
+            // 文档中显示的日期格式（移除前导零）
+            const monthForDoc = (inputDate.getMonth() + 1);  // 直接使用数字
+            const dayForDoc = inputDate.getDate();           // 直接使用数字
+            const dateForDoc = `${inputDate.getFullYear()}年${monthForDoc}月${dayForDoc}日`;
+
+            // 文件名中的日期格式（保持前导零）
             const month = (inputDate.getMonth() + 1).toString().padStart(2, '0');
             const day = inputDate.getDate().toString().padStart(2, '0');
-            const dateForDoc = `${inputDate.getFullYear()}年${month}月${day}日`;
             const dateForFile = `${inputDate.getFullYear().toString().slice(-2)}.${month}.${day}`;
 
             // 读取模板文件
