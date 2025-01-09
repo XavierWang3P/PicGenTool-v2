@@ -1,0 +1,16 @@
+# 2025.01.08
+
+1. 使用 docxtemplater-image-module-pwndoc 库替换 docxtemplater-image-module-free 库，解决 xmldom 0.6.0 漏洞；
+2. Docker 基础镜像更改为 node23.5-slim，使用非 root 用户运行程序；
+3. 修复文档中日期存在前导 0；
+
+# 2025.01.07
+
+1. 修改运行端口为 5965；
+2. 增加对 Windows 平台的兼容，调整文件路径连接符；
+3. 使用 Buffer 处理文件名编码，增加移除文件名中非法字符的功能；
+
+# 2024.12.24
+
+1. 使用 Node.js 重构程序，并使用 docxtemplater 调用固定模板生成文档；
+2. 重新设计前端界面，增加图片预览功能。
